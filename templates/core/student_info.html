@@ -1,0 +1,23 @@
+{% extends 'core/index.html' %}
+
+{% block main_content %}
+
+<div class="jumbotron">
+            <h1>{{ student.last_name }} {{ student.first_name }} {{ student.middle_name }}</h1>
+            <p><b>Номер зачетной книжки:</b> {{ student.record_book.number }}</p>
+          </div>
+{% endblock main_content %}
+
+{% block menu %}
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+          <div class="list-group">
+              {% for stud_link in students %}
+                  {% if stud_link.pk == student.pk  %}
+                      <a href="{% url 'detail' pk=student.pk %}" class="list-group-item active">{{ student.first_name }} {{ student.last_name }}</a>
+                      {% else %}
+                      <a href="{% url 'detail' pk=stud_link.pk %}" class="list-group-item">{{ stud_link.first_name }} {{ stud_link.last_name }}</a>
+                  {% endif %}
+              {% endfor %}
+          </div>
+        </div><!--/.sidebar-offcanvas-->
+{% endblock menu %}

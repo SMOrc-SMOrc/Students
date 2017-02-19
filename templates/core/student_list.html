@@ -1,0 +1,22 @@
+{% extends 'core/index.html' %}
+{% block main_content %}
+    <div class="row">
+    {% for student in students %}
+            <div class="col-xs-6 col-lg-4">
+              <h2>{{ student.last_name }}</h2>
+              <p>{{ student.first_name }} {{ student.middle_name }}</p>
+              <p><a class="btn btn-default" href="{% url 'detail' pk=student.pk %}" role="button">Подробнее &raquo;</a></p>
+            </div><!--/.col-xs-6.col-lg-4-->
+    {% endfor %}
+          </div><!--/row-->
+{% endblock main_content %}
+
+{% block menu %}
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+          <div class="list-group">
+              {% for student in students %}
+            <a href="{% url 'detail' pk=student.pk %}" class="list-group-item">{{ student.first_name }} {{ student.last_name }}</a>
+              {% endfor %}
+          </div>
+        </div><!--/.sidebar-offcanvas-->
+        {% endblock menu %}
